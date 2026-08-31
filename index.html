@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Splitter</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header class ="top">
+        <h1> Expense Splitter</h1>
+        <p> Split expenses and see who owes what.</p>
+    </header>
+
+    <main class ="card">
+        <form id="personForm" class="rowForm">
+            <input type="text" placeholder="Add person name"/>
+            <button>Add Person</button>
+        </form>
+        <form id="ExpenseForm" class="rowForm>
+            <input type ="text" placeholder="Expense Description"/>
+            <input type ="number" placeholder="Amount"/>
+            <select id ="">
+                <option value "John">John</option>
+                <option value "Carlos">Carlos</option>
+            </select>
+            <button>Add Expense</button>
+        </form>
+        </form>
+        <section>
+            <h3> people</h3>
+            <ul class ="list">
+                <li>John</li>
+                <li>Carlos</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Expenses</h3>
+            <ul class="list">
+                <li>Sodas - $10 paid by Carlos</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Total</h3>
+            <p>
+                Total Spent: <strong> $10.00</strong><br/>
+                Split per person: <strong>$5.00</strong>
+            </p>
+        </section>
+
+        <section class ="summary">
+            <h3>Summary</h3>
+            <ul class="list">
+                <li>John owes $5.00 </li>
+                <li> Carlos gets $5.00</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
