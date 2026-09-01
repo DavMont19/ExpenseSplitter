@@ -2,8 +2,19 @@ const personForm = document.getElementById('personForm');
 const personInput = document.getElementById('personInput');
 const peopleList = document.getElementById('peopleList');
 
+const expenseForm = document.getElementById('expenseForm');
+const descInput = document.getElementById('descInput');
+const amountInput = document.getElementById('amountInput');
 const paidBySelect = document.getElementById('paidBySelect');
+const expenseList = document.getElementById('expenseList');
+
+
+const totalSpent = document.getElementById('totalSpent');
+const SplitAmount = document.getElementById('splitAmount');
+const summaryList = document.getElementById('summaryList');
+
 const people = [];
+const expenses = [];
 
 const render = () => {
     peopleList.innerHTML = '';
