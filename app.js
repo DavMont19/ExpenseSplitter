@@ -10,7 +10,7 @@ const expenseList = document.getElementById('expenseList');
 
 
 const totalSpent = document.getElementById('totalSpent');
-const SplitAmount = document.getElementById('splitAmount');
+const splitAmount = document.getElementById('splitAmount');
 const summaryList = document.getElementById('summaryList');
 
 const people = [];
@@ -32,6 +32,44 @@ const render = () => {
 
 
     })
+
+    expenseList.innerHTML ='';
+    expenses.forEach(expense =>{
+        const li = document.createElement('li');
+        li.textContent = `${expense.desc} - $${expense.amount.toFixed(2)} paid by ${expense.paidBy}`;
+        expenseList.appendChild(li);
+    })
+
+    renderSummary();
+}
+
+const renderSummary = () => {
+    summaryList.innerHTML = '';
+
+    if(people.length === 0){
+        totalSpent.textContent = '$0.00';
+        splitAmount.textContent ='$0.00';
+        return;
+    }
+    const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+    const share = total / people.length;
+
+    totalSpent.textContent = `$${total.toFixed(2)}`;
+    splitAmount.textContent = `$${share.toFixed(2)}`;
+
+    people.forEach(person => {
+        const paid = expenses.filter(exp => exp.paidBy === person).reduce((sum, exp) => sum + exp.amount, 0);
+
+        const balance = paid - share;
+
+        const li = document.createElement('li');
+        li.textContent = 
+            balance >= 0
+            ?`${person} gets $${balance.toFixed(2)}`
+            :`${person} owes $${Math.abs(balance.toFixed(2))}`
+
+        summaryList.appendChild(li);
+    })
 }
 
 personForm.addEventListener('submit', event =>{
@@ -45,5 +83,23 @@ personForm.addEventListener('submit', event =>{
     personInput.value ='';
 
     render();
+})
+
+expenseForm.addEventListener('submit', event =>{
+    event.preventDefault();
+    const desc = descInput.value.trim();
+    const amount = parseFloat(amountInput.value);
+    const paidBy = paidBySelect.value;
+
+    if(!desc || !amount || !paidBy) return;
+
+    expenses.push({
+        desc, amount, paidBy
+    });
+
+    descInput.value = '';
+    amountInput.value = '';
+    render();
+
 })
 render();
